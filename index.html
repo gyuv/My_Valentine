@@ -1,153 +1,234 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Our Infinity | Yuvaraj ❤️ Ramya</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Playfair+Display:ital,wght@0,700;1,400&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
-    
-    <style>
-        :root { --gold: #D4AF37; --maroon: #2b0303; }
-        body { background-color: #1a0101; color: #fff; font-family: 'Poppins', sans-serif; overflow-x: hidden; }
-        .font-title { font-family: 'Playfair Display', serif; }
-        .font-cursive { font-family: 'Dancing Script', cursive; }
-        
-        /* Lock Screen */
-        #lock-screen {
-            position: fixed; inset: 0; background: var(--maroon); z-index: 9999;
-            display: flex; flex-direction: column; align-items: center; justify-content: center;
-            transition: transform 1s ease-in-out;
-        }
-        .unlock-input {
-            background: rgba(255,255,255,0.1); border: 1px solid var(--gold);
-            padding: 10px; border-radius: 5px; color: white; text-align: center; outline: none;
-        }
-        
-        /* Easter Eggs */
-        .easter-egg { cursor: pointer; transition: transform 0.3s; display: inline-block; }
-        .easter-egg:hover { transform: scale(1.5) rotate(15deg); }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Our Infinity | Yuvaraj ❤️ Ramya</title>
 
-        /* Countdown Box */
-        .timer-unit { background: rgba(212, 175, 55, 0.1); border: 1px solid var(--gold); padding: 10px; border-radius: 8px; min-width: 70px; }
-        
-        /* Hidden Content */
-        #main-content { display: none; }
-        .photo-frame { border: 8px solid #fff; transition: 0.3s; box-shadow: 10px 10px 20px rgba(0,0,0,0.5); }
-    </style>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Playfair+Display:wght@700&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --gold:#D4AF37;
+  --maroon:#1a0101;
+}
+
+body{
+  background: radial-gradient(circle at top,#2b0303,#0f0000);
+  color:white;
+  font-family:'Poppins',sans-serif;
+  overflow-x:hidden;
+}
+
+.font-title{font-family:'Playfair Display',serif;}
+.font-cursive{font-family:'Dancing Script',cursive;}
+
+.glass{
+  background:rgba(255,255,255,0.08);
+  backdrop-filter:blur(10px);
+  border:1px solid rgba(212,175,55,0.3);
+  box-shadow:0 0 30px rgba(212,175,55,0.15);
+}
+
+#lock-screen{
+  position:fixed;
+  inset:0;
+  background:linear-gradient(135deg,#2b0303,#000);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  z-index:9999;
+  transition:1s;
+}
+
+.unlock-input{
+  background:rgba(255,255,255,0.1);
+  border:1px solid var(--gold);
+  padding:12px;
+  border-radius:8px;
+  text-align:center;
+  color:white;
+  outline:none;
+}
+
+.photo-frame{
+  border:8px solid #fff;
+  box-shadow:0 20px 40px rgba(0,0,0,0.6);
+  transition:0.4s;
+}
+.photo-frame:hover{
+  transform:scale(1.05) rotate(-2deg);
+}
+
+.heart{
+  position:fixed;
+  font-size:20px;
+  pointer-events:none;
+  animation:floatUp linear forwards;
+}
+
+@keyframes floatUp{
+  to{
+    transform:translateY(-120vh) rotate(360deg);
+    opacity:0;
+  }
+}
+
+.petal{
+  position:fixed;
+  width:15px;
+  height:15px;
+  background:pink;
+  border-radius:50% 50% 50% 0;
+  transform:rotate(-45deg);
+  opacity:0.7;
+  animation:fall linear forwards;
+}
+
+@keyframes fall{
+  to{
+    transform:translateY(120vh) rotate(360deg);
+    opacity:0;
+  }
+}
+
+.fade-in{
+  animation:fadeIn 2s ease forwards;
+}
+@keyframes fadeIn{
+  from{opacity:0;transform:translateY(30px);}
+  to{opacity:1;transform:translateY(0);}
+}
+
+@media(max-width:768px){
+  h1{font-size:3rem!important;}
+  h2{font-size:2rem!important;}
+}
+</style>
 </head>
+
 <body>
 
-    <div id="lock-screen">
-        <div class="text-center p-6" data-aos="fade-up">
-            <h2 class="font-title text-3xl mb-4 text-[#D4AF37]">A Secret for Ramya</h2>
-            <p class="text-sm text-gray-400 mb-6 italic italic">Hint: First time what you called me...</p>
-            <input type="password" id="passwordField" class="unlock-input mb-4" placeholder="Enter Password">
-            <br>
-            <button onclick="checkPassword()" class="bg-[#D4AF37] text-black px-6 py-2 rounded-full font-bold hover:bg-yellow-500 transition">Open My Heart</button>
-            <p id="errorMsg" class="text-red-500 mt-4 hidden">Try again, my love! Think harder ❤️</p>
-        </div>
-    </div>
+<div id="lock-screen">
+  <div class="text-center p-8 glass rounded-2xl fade-in">
+    <h2 class="font-title text-3xl text-[#D4AF37] mb-4">A Secret for Ramya</h2>
+    <p class="text-sm text-gray-400 mb-6 italic">Hint: First time what you called me...</p>
+    <input type="password" id="passwordField" class="unlock-input mb-4" placeholder="Enter Password">
+    <br>
+    <button onclick="checkPassword()" class="bg-[#D4AF37] text-black px-6 py-2 rounded-full font-bold hover:bg-yellow-500 transition">
+      Open My Heart
+    </button>
+    <p id="errorMsg" class="text-red-400 mt-4 hidden">Think again, my love ❤️</p>
+  </div>
+</div>
 
-    <div id="main-content">
-        <section class="min-h-screen flex flex-col justify-center items-center text-center">
-            <h1 class="font-cursive text-7xl text-[#D4AF37] mb-2" data-aos="zoom-in">Hey Ramya...</h1>
-            <p class="italic tracking-widest text-gray-400" data-aos="fade-up">Welcome to our digital infinity.</p>
-        </section>
+<div id="main-content" class="hidden">
 
-        <section class="py-20 px-6 bg-[#2b0303]">
-            <div class="max-w-4xl mx-auto grid md:grid-cols-2 gap-10 items-center">
-                <div data-aos="fade-right"><img src="WEDDING_PHOTO_URL" class="photo-frame rotate-[-3deg] w-full"></div>
-                <div data-aos="fade-left">
-                    <h2 class="font-title text-4xl text-[#D4AF37] mb-4">The Biriyani Trap</h2>
-                    <p class="italic text-gray-300">"I came for the food, but I left with you. Best trade deal in history."</p>
-                    <div class="mt-4 p-4 bg-black/40 rounded border-l-4 border-[#D4AF37]">
-                        <span class="easter-egg" onclick="alert('Still not as spicy as your 2 PM mood swings! 🌶️')">🌶️</span>
-                        <span class="text-xs text-gray-500 ml-2">(Click the chili if you dare)</span>
-                    </div>
-                </div>
-            </div>
-        </section>
+<section class="min-h-screen flex flex-col justify-center items-center text-center px-6">
+  <h1 class="font-cursive text-7xl text-[#D4AF37] mb-4 fade-in">Hey Ramya...</h1>
+  <p class="italic text-gray-400 fade-in">Welcome to our digital infinity ✨</p>
+</section>
 
-        <section class="py-20 text-center">
-            <div data-aos="zoom-in" class="max-w-2xl mx-auto">
-                <h2 class="font-cursive text-5xl text-[#D4AF37] mb-6">Instagram & Late Nights</h2>
-                <p class="mb-6 italic">"5 minutes became 2 hours... and I loved every second."</p>
-                <span class="easter-egg text-4xl" onclick="alert('Total hours spent on video calls: 4,320 and counting! 📱')">📱</span>
-            </div>
-        </section>
+<section class="py-20 px-6">
+<div class="max-w-4xl mx-auto grid md:grid-cols-2 gap-10 items-center">
+  <img src="WEDDING_PHOTO_URL" class="photo-frame w-full rounded-lg">
+  <div class="glass p-8 rounded-2xl">
+    <h2 class="font-title text-4xl text-[#D4AF37] mb-4">The Biriyani Trap</h2>
+    <p class="italic text-gray-300">
+      I came for the food, but I left with you.
+      Best decision of my life.
+    </p>
+  </div>
+</div>
+</section>
 
-        <section class="py-20 bg-[#4a0404] text-center px-6">
-            <div data-aos="fade-up">
-                <h2 class="font-title text-4xl text-[#D4AF37] mb-8">Counting Down to Our Anniversary</h2>
-                <div id="countdown" class="flex justify-center gap-4 text-center">
-                    <div class="timer-unit"><div id="days" class="text-2xl font-bold">00</div><div class="text-xs">DAYS</div></div>
-                    <div class="timer-unit"><div id="hours" class="text-2xl font-bold">00</div><div class="text-xs">HRS</div></div>
-                    <div class="timer-unit"><div id="mins" class="text-2xl font-bold">00</div><div class="text-xs">MINS</div></div>
-                    <div class="timer-unit"><div id="secs" class="text-2xl font-bold">00</div><div class="text-xs">SECS</div></div>
-                </div>
-                <p class="mt-8 italic text-gray-300">Vadapalani Murugan Temple | 7:00 AM</p>
-            </div>
-        </section>
+<section class="py-20 text-center px-6">
+  <h2 class="font-cursive text-5xl text-[#D4AF37] mb-6">Late Nights & Video Calls</h2>
+  <p class="italic text-gray-300 mb-6">
+    5 minutes became 2 hours... and I loved every second.
+  </p>
+</section>
 
-        <section class="min-h-screen flex flex-col justify-center items-center text-center">
-            <span class="text-8xl text-[#D4AF37]">∞</span>
-            <h2 class="font-cursive text-6xl text-[#D4AF37] mt-4">Infinity Life</h2>
-            <p class="mt-6 italic max-w-md">"From Biriyani to Forever. I Love You, Ramya."</p>
-        </section>
-    </div>
+<section class="py-20 bg-[#2b0303] text-center px-6">
+  <h2 class="font-title text-4xl text-[#D4AF37] mb-8">
+    Countdown to Our Anniversary
+  </h2>
+  <div id="countdown" class="flex justify-center gap-6 text-xl"></div>
+</section>
 
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script>
-        AOS.init({ duration: 1200 });
+<section class="min-h-screen flex flex-col justify-center items-center text-center px-6">
+  <div class="text-8xl text-[#D4AF37]">∞</div>
+  <h2 class="font-cursive text-6xl text-[#D4AF37] mt-4">Infinity Life</h2>
+  <p class="mt-6 italic max-w-md">
+    From Biriyani to Forever. I Love You, Ramya.
+  </p>
+</section>
 
-        // Password Logic
-        function checkPassword() {
-            const pass = document.getElementById('passwordField').value.toLowerCase();
-            if(pass === "anna") {
-                document.getElementById('lock-screen').style.transform = 'translateY(-100%)';
-                setTimeout(() => {
-                    document.getElementById('lock-screen').style.display = 'none';
-                    document.getElementById('main-content').style.display = 'block';
-                    startHearts();
-                }, 1000);
-            } else {
-                document.getElementById('errorMsg').classList.remove('hidden');
-            }
-        }
+</div>
 
-        // Countdown Logic
-        const targetDate = new Date("August 29, 2026 07:00:00").getTime();
-        setInterval(() => {
-            const now = new Date().getTime();
-            const diff = targetDate - now;
-            document.getElementById('days').innerText = Math.floor(diff / (1000 * 60 * 60 * 24));
-            document.getElementById('hours').innerText = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            document.getElementById('mins').innerText = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-            document.getElementById('secs').innerText = Math.floor((diff % (1000 * 60)) / 1000);
-        }, 1000);
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+AOS.init();
 
-        // Hearts Animation
-        function startHearts() {
-            setInterval(() => {
-                const heart = document.createElement('div');
-                heart.innerHTML = '❤️';
-                heart.style.position = 'fixed';
-                heart.style.left = Math.random() * 100 + 'vw';
-                heart.style.bottom = '-5vh';
-                heart.style.opacity = Math.random();
-                heart.style.fontSize = Math.random() * 20 + 10 + 'px';
-                heart.style.zIndex = '50';
-                heart.style.pointerEvents = 'none';
-                document.body.appendChild(heart);
-                
-                heart.animate([
-                    { transform: 'translateY(0) rotate(0deg)', opacity: 1 },
-                    { transform: `translateY(-110vh) rotate(${Math.random() * 360}deg)`, opacity: 0 }
-                ], { duration: 4000, easing: 'ease-out' }).onfinish = () => heart.remove();
-            }, 300);
-        }
-    </script>
+function checkPassword(){
+  const pass=document.getElementById("passwordField").value.toLowerCase();
+  if(pass==="anna"){
+    document.getElementById("lock-screen").style.transform="translateY(-100%)";
+    setTimeout(()=>{
+      document.getElementById("lock-screen").remove();
+      document.getElementById("main-content").classList.remove("hidden");
+      startHearts();
+      startPetals();
+    },1000);
+  }else{
+    document.getElementById("errorMsg").classList.remove("hidden");
+  }
+}
+
+/* Countdown */
+const target=new Date("August 29, 2026 07:00:00").getTime();
+setInterval(()=>{
+  const now=new Date().getTime();
+  const diff=target-now;
+  const days=Math.floor(diff/(1000*60*60*24));
+  const hours=Math.floor((diff%(1000*60*60*24))/(1000*60*60));
+  const mins=Math.floor((diff%(1000*60*60))/(1000*60));
+  const secs=Math.floor((diff%(1000*60))/1000);
+  document.getElementById("countdown").innerHTML=
+  `${days} Days ${hours} Hrs ${mins} Mins ${secs} Secs`;
+},1000);
+
+/* Heart Shower */
+function startHearts(){
+  setInterval(()=>{
+    const heart=document.createElement("div");
+    heart.innerHTML="❤️";
+    heart.className="heart";
+    heart.style.left=Math.random()*100+"vw";
+    heart.style.bottom="-5vh";
+    heart.style.fontSize=Math.random()*20+15+"px";
+    heart.style.animationDuration=Math.random()*3+3+"s";
+    document.body.appendChild(heart);
+    setTimeout(()=>heart.remove(),6000);
+  },200);
+}
+
+/* Petal Shower */
+function startPetals(){
+  setInterval(()=>{
+    const petal=document.createElement("div");
+    petal.className="petal";
+    petal.style.left=Math.random()*100+"vw";
+    petal.style.top="-10px";
+    petal.style.animationDuration=Math.random()*5+5+"s";
+    document.body.appendChild(petal);
+    setTimeout(()=>petal.remove(),10000);
+  },400);
+}
+</script>
+
 </body>
 </html>
