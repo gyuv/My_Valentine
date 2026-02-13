@@ -6,228 +6,225 @@
 <title>Our Infinity | Yuvaraj ❤️ Ramya</title>
 
 <script src="https://cdn.tailwindcss.com"></script>
-<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-
 <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Playfair+Display:wght@700&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
 
 <style>
-:root {
-  --gold:#D4AF37;
-  --maroon:#1a0101;
-}
-
 body{
-  background: radial-gradient(circle at top,#2b0303,#0f0000);
+  margin:0;
+  background:#0b0000;
   color:white;
   font-family:'Poppins',sans-serif;
   overflow-x:hidden;
 }
-
-.font-title{font-family:'Playfair Display',serif;}
 .font-cursive{font-family:'Dancing Script',cursive;}
+.font-title{font-family:'Playfair Display',serif;}
+
+canvas{
+  position:fixed;
+  top:0;
+  left:0;
+  z-index:-1;
+}
 
 .glass{
-  background:rgba(255,255,255,0.08);
-  backdrop-filter:blur(10px);
-  border:1px solid rgba(212,175,55,0.3);
-  box-shadow:0 0 30px rgba(212,175,55,0.15);
-}
-
-#lock-screen{
-  position:fixed;
-  inset:0;
-  background:linear-gradient(135deg,#2b0303,#000);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  z-index:9999;
-  transition:1s;
-}
-
-.unlock-input{
-  background:rgba(255,255,255,0.1);
-  border:1px solid var(--gold);
-  padding:12px;
-  border-radius:8px;
-  text-align:center;
-  color:white;
-  outline:none;
-}
-
-.photo-frame{
-  border:8px solid #fff;
-  box-shadow:0 20px 40px rgba(0,0,0,0.6);
-  transition:0.4s;
-}
-.photo-frame:hover{
-  transform:scale(1.05) rotate(-2deg);
-}
-
-.heart{
-  position:fixed;
-  font-size:20px;
-  pointer-events:none;
-  animation:floatUp linear forwards;
-}
-
-@keyframes floatUp{
-  to{
-    transform:translateY(-120vh) rotate(360deg);
-    opacity:0;
-  }
-}
-
-.petal{
-  position:fixed;
-  width:15px;
-  height:15px;
-  background:pink;
-  border-radius:50% 50% 50% 0;
-  transform:rotate(-45deg);
-  opacity:0.7;
-  animation:fall linear forwards;
-}
-
-@keyframes fall{
-  to{
-    transform:translateY(120vh) rotate(360deg);
-    opacity:0;
-  }
+  background:rgba(255,0,0,0.08);
+  backdrop-filter:blur(8px);
+  border:1px solid rgba(255,215,0,0.4);
+  box-shadow:0 0 30px rgba(255,0,0,0.2);
 }
 
 .fade-in{
-  animation:fadeIn 2s ease forwards;
+  animation:fade 2s ease forwards;
 }
-@keyframes fadeIn{
+@keyframes fade{
   from{opacity:0;transform:translateY(30px);}
   to{opacity:1;transform:translateY(0);}
 }
 
-@media(max-width:768px){
-  h1{font-size:3rem!important;}
-  h2{font-size:2rem!important;}
+.heart{
+  position:fixed;
+  animation:floatUp linear forwards;
+  pointer-events:none;
+}
+@keyframes floatUp{
+  to{transform:translateY(-120vh);opacity:0;}
+}
+
+.timeline-line{
+  border-left:2px solid gold;
+}
+
+.proposal{
+  display:none;
+  animation:pop 1s ease forwards;
+}
+@keyframes pop{
+  from{transform:scale(0);opacity:0;}
+  to{transform:scale(1);opacity:1;}
 }
 </style>
 </head>
 
 <body>
 
-<div id="lock-screen">
-  <div class="text-center p-8 glass rounded-2xl fade-in">
-    <h2 class="font-title text-3xl text-[#D4AF37] mb-4">A Secret for Ramya</h2>
-    <p class="text-sm text-gray-400 mb-6 italic">Hint: First time what you called me...</p>
-    <input type="password" id="passwordField" class="unlock-input mb-4" placeholder="Enter Password">
-    <br>
-    <button onclick="checkPassword()" class="bg-[#D4AF37] text-black px-6 py-2 rounded-full font-bold hover:bg-yellow-500 transition">
-      Open My Heart
-    </button>
-    <p id="errorMsg" class="text-red-400 mt-4 hidden">Think again, my love ❤️</p>
-  </div>
-</div>
+<canvas id="stars"></canvas>
 
-<div id="main-content" class="hidden">
+<!-- Music -->
+<audio id="bgMusic" loop>
+<source src="https://cdn.pixabay.com/audio/2022/03/15/audio_4f3d3b0a8b.mp3">
+</audio>
 
-<section class="min-h-screen flex flex-col justify-center items-center text-center px-6">
-  <h1 class="font-cursive text-7xl text-[#D4AF37] mb-4 fade-in">Hey Ramya...</h1>
-  <p class="italic text-gray-400 fade-in">Welcome to our digital infinity ✨</p>
+<button onclick="toggleMusic()" 
+class="fixed top-5 right-5 bg-red-600 px-4 py-2 rounded-full z-50">
+🎶
+</button>
+
+<section class="min-h-screen flex flex-col justify-center items-center text-center px-6 fade-in">
+<h1 class="font-cursive text-6xl text-red-500">Ramya ❤️</h1>
+<p class="italic mt-4 text-gray-300">From 14 September 2021 to Forever</p>
 </section>
 
 <section class="py-20 px-6">
-<div class="max-w-4xl mx-auto grid md:grid-cols-2 gap-10 items-center">
-  <img src="WEDDING_PHOTO_URL" class="photo-frame w-full rounded-lg">
-  <div class="glass p-8 rounded-2xl">
-    <h2 class="font-title text-4xl text-[#D4AF37] mb-4">The Biriyani Trap</h2>
-    <p class="italic text-gray-300">
-      I came for the food, but I left with you.
-      Best decision of my life.
-    </p>
-  </div>
+<div class="max-w-3xl mx-auto glass p-10 rounded-2xl text-center">
+<h2 class="font-title text-4xl text-yellow-400 mb-6">Our Love Story</h2>
+
+<div class="timeline-line pl-6 text-left space-y-8">
+
+<div>
+<h3 class="text-red-400 font-bold">14 September 2021</h3>
+<p>First meet. I came casually… but destiny had already decided something beautiful.</p>
+</div>
+
+<div>
+<h3 class="text-red-400 font-bold">Endless Calls</h3>
+<p>5 minutes turned into 2 hours. Sleep became optional. You became essential.</p>
+</div>
+
+<div>
+<h3 class="text-red-400 font-bold">29 August 2025</h3>
+<p>Our wedding day. Not just marriage — two souls becoming one forever.</p>
+</div>
+
+</div>
 </div>
 </section>
 
-<section class="py-20 text-center px-6">
-  <h2 class="font-cursive text-5xl text-[#D4AF37] mb-6">Late Nights & Video Calls</h2>
-  <p class="italic text-gray-300 mb-6">
-    5 minutes became 2 hours... and I loved every second.
-  </p>
+<section class="py-20 text-center">
+<h2 class="font-cursive text-5xl text-yellow-400 mb-6">Inside Jokes</h2>
+<p>🌶️ “Your 2PM mood swings need GST registration.”</p>
+<p>📱 “Network issue? Or are you ignoring me?”</p>
+<p>🍛 “I came for biriyani. I stayed for you.”</p>
 </section>
 
-<section class="py-20 bg-[#2b0303] text-center px-6">
-  <h2 class="font-title text-4xl text-[#D4AF37] mb-8">
-    Countdown to Our Anniversary
-  </h2>
-  <div id="countdown" class="flex justify-center gap-6 text-xl"></div>
+<section class="py-20 text-center">
+<h2 class="font-title text-4xl text-yellow-400 mb-6">Countdown to Our Anniversary</h2>
+<div id="countdown" class="text-2xl"></div>
 </section>
 
-<section class="min-h-screen flex flex-col justify-center items-center text-center px-6">
-  <div class="text-8xl text-[#D4AF37]">∞</div>
-  <h2 class="font-cursive text-6xl text-[#D4AF37] mt-4">Infinity Life</h2>
-  <p class="mt-6 italic max-w-md">
-    From Biriyani to Forever. I Love You, Ramya.
-  </p>
-</section>
+<section class="py-20 text-center">
+<button onclick="showLetter()" class="bg-red-600 px-6 py-3 rounded-full">
+💌 Open Love Letter
+</button>
 
+<div id="letter" class="proposal glass p-8 rounded-2xl mt-6 max-w-2xl mx-auto">
+<h2 class="font-cursive text-4xl text-yellow-400 mb-4">My Ramya</h2>
+<p>
+From the moment I met you, something inside me changed.  
+You are not just my wife.  
+You are my calm, my madness, my peace, my forever.  
+
+I promise to love you louder on the difficult days  
+and softer on the quiet ones.  
+
+With you, infinity doesn’t feel long enough.  
+I love you beyond words.
+</p>
 </div>
+</section>
 
-<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<section class="py-20 text-center">
+<h2 class="font-title text-4xl text-yellow-400 mb-6">Vadapalani Murugan Temple</h2>
+<iframe 
+src="https://www.google.com/maps?q=Vadapalani+Murugan+Temple&output=embed"
+width="100%" height="300" style="border:0;" allowfullscreen></iframe>
+</section>
+
+<section class="py-20 text-center">
+<button onclick="showProposal()" class="bg-yellow-500 text-black px-6 py-3 rounded-full">
+Click Here If You Love Me ❤️
+</button>
+
+<div id="proposalText" class="proposal mt-6 text-4xl font-cursive text-red-500">
+Will You Stay With Me Forever?
+</div>
+</section>
+
 <script>
-AOS.init();
-
-function checkPassword(){
-  const pass=document.getElementById("passwordField").value.toLowerCase();
-  if(pass==="anna"){
-    document.getElementById("lock-screen").style.transform="translateY(-100%)";
-    setTimeout(()=>{
-      document.getElementById("lock-screen").remove();
-      document.getElementById("main-content").classList.remove("hidden");
-      startHearts();
-      startPetals();
-    },1000);
-  }else{
-    document.getElementById("errorMsg").classList.remove("hidden");
-  }
+/* Music */
+function toggleMusic(){
+const music=document.getElementById("bgMusic");
+music.paused?music.play():music.pause();
 }
+
+/* Stars */
+const canvas=document.getElementById("stars");
+const ctx=canvas.getContext("2d");
+canvas.width=window.innerWidth;
+canvas.height=window.innerHeight;
+let stars=[];
+for(let i=0;i<200;i++){
+stars.push({x:Math.random()*canvas.width,
+y:Math.random()*canvas.height,
+r:Math.random()*2});
+}
+function drawStars(){
+ctx.clearRect(0,0,canvas.width,canvas.height);
+ctx.fillStyle="white";
+stars.forEach(s=>{
+ctx.beginPath();
+ctx.arc(s.x,s.y,s.r,0,Math.PI*2);
+ctx.fill();
+});
+requestAnimationFrame(drawStars);
+}
+drawStars();
 
 /* Countdown */
 const target=new Date("August 29, 2026 07:00:00").getTime();
 setInterval(()=>{
-  const now=new Date().getTime();
-  const diff=target-now;
-  const days=Math.floor(diff/(1000*60*60*24));
-  const hours=Math.floor((diff%(1000*60*60*24))/(1000*60*60));
-  const mins=Math.floor((diff%(1000*60*60))/(1000*60));
-  const secs=Math.floor((diff%(1000*60))/1000);
-  document.getElementById("countdown").innerHTML=
-  `${days} Days ${hours} Hrs ${mins} Mins ${secs} Secs`;
+const now=new Date().getTime();
+const diff=target-now;
+const days=Math.floor(diff/(1000*60*60*24));
+document.getElementById("countdown").innerHTML=
+days+" Days Remaining ❤️";
+if(diff<=0){
+document.body.style.background="black";
+alert("Happy Anniversary My Love 🎆");
+}
 },1000);
 
-/* Heart Shower */
-function startHearts(){
-  setInterval(()=>{
-    const heart=document.createElement("div");
-    heart.innerHTML="❤️";
-    heart.className="heart";
-    heart.style.left=Math.random()*100+"vw";
-    heart.style.bottom="-5vh";
-    heart.style.fontSize=Math.random()*20+15+"px";
-    heart.style.animationDuration=Math.random()*3+3+"s";
-    document.body.appendChild(heart);
-    setTimeout(()=>heart.remove(),6000);
-  },200);
+/* Letter */
+function showLetter(){
+document.getElementById("letter").style.display="block";
 }
 
-/* Petal Shower */
-function startPetals(){
-  setInterval(()=>{
-    const petal=document.createElement("div");
-    petal.className="petal";
-    petal.style.left=Math.random()*100+"vw";
-    petal.style.top="-10px";
-    petal.style.animationDuration=Math.random()*5+5+"s";
-    document.body.appendChild(petal);
-    setTimeout(()=>petal.remove(),10000);
-  },400);
+/* Proposal */
+function showProposal(){
+document.getElementById("proposalText").style.display="block";
 }
+
+/* Hearts */
+setInterval(()=>{
+const heart=document.createElement("div");
+heart.innerHTML="❤️";
+heart.className="heart";
+heart.style.left=Math.random()*100+"vw";
+heart.style.bottom="-10px";
+heart.style.fontSize=Math.random()*20+15+"px";
+heart.style.animationDuration="4s";
+document.body.appendChild(heart);
+setTimeout(()=>heart.remove(),4000);
+},300);
 </script>
 
 </body>
