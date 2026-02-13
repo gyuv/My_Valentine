@@ -1,230 +1,254 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Our Infinity | Yuvaraj ❤️ Ramya</title>
-
-<script src="https://cdn.tailwindcss.com"></script>
-<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Playfair+Display:wght@700&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
+<title>Ramya ❤️ Yuvaraj</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
 
 <style>
+*{margin:0;padding:0;box-sizing:border-box}
 body{
-  margin:0;
-  background:#0b0000;
-  color:white;
-  font-family:'Poppins',sans-serif;
-  overflow-x:hidden;
+font-family:'Poppins',sans-serif;
+background:#000;
+color:white;
+overflow-x:hidden;
+scroll-behavior:smooth;
 }
-.font-cursive{font-family:'Dancing Script',cursive;}
-.font-title{font-family:'Playfair Display',serif;}
+
+/* Temple cinematic background */
+body::before{
+content:"";
+position:fixed;
+width:100%;
+height:100%;
+background:url("https://images.unsplash.com/photo-1625660009535-76a5a9d5c1a7?auto=format&fit=crop&w=1600&q=80") center/cover no-repeat;
+filter:brightness(0.3) blur(6px);
+z-index:-3;
+}
 
 canvas{
-  position:fixed;
-  top:0;
-  left:0;
-  z-index:-1;
+position:fixed;
+top:0;
+left:0;
+pointer-events:none;
 }
 
-.glass{
-  background:rgba(255,0,0,0.08);
-  backdrop-filter:blur(8px);
-  border:1px solid rgba(255,215,0,0.4);
-  box-shadow:0 0 30px rgba(255,0,0,0.2);
+section{
+height:100vh;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+text-align:center;
+padding:20px;
 }
 
-.fade-in{
-  animation:fade 2s ease forwards;
+h1{font-family:'Cinzel',serif;font-size:60px;}
+
+.gold{
+background:linear-gradient(90deg,#ffd700,#fff,#ffd700);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+animation:sparkle 3s infinite linear;
 }
-@keyframes fade{
-  from{opacity:0;transform:translateY(30px);}
-  to{opacity:1;transform:translateY(0);}
+@keyframes sparkle{
+0%{filter:brightness(1);}
+50%{filter:brightness(2);}
+100%{filter:brightness(1);}
 }
 
-.heart{
-  position:fixed;
-  animation:floatUp linear forwards;
-  pointer-events:none;
-}
-@keyframes floatUp{
-  to{transform:translateY(-120vh);opacity:0;}
-}
-
-.timeline-line{
-  border-left:2px solid gold;
+/* Shadow figures */
+.figure{
+position:fixed;
+bottom:0;
+height:300px;
+filter:brightness(0) invert(1) opacity(0.8);
+transition:all 0.3s linear;
 }
 
-.proposal{
-  display:none;
-  animation:pop 1s ease forwards;
+#boy{
+left:-200px;
 }
-@keyframes pop{
-  from{transform:scale(0);opacity:0;}
-  to{transform:scale(1);opacity:1;}
+
+#girl{
+right:50px;
+opacity:0;
+}
+
+/* Tamil engraved */
+.poem{
+max-width:800px;
+font-size:20px;
+line-height:2;
+opacity:0;
+transform:translateY(40px);
+transition:all 1.5s ease;
+}
+
+.show{opacity:1;transform:translateY(0)}
+
+.signature{
+font-size:28px;
+margin-top:20px;
+opacity:0;
+transition:2s;
+}
+
+.countdown{
+font-size:32px;
+margin-top:20px;
 }
 </style>
 </head>
-
 <body>
 
+<audio id="bells" src="https://assets.mixkit.co/sfx/preview/mixkit-temple-bell-588.mp3"></audio>
+<audio id="music" loop src="https://assets.mixkit.co/music/preview/mixkit-love-romantic-ambient-120.mp3"></audio>
+
 <canvas id="stars"></canvas>
+<canvas id="fireworks"></canvas>
 
-<!-- Music -->
-<audio id="bgMusic" loop>
-<source src="https://cdn.pixabay.com/audio/2022/03/15/audio_4f3d3b0a8b.mp3">
-</audio>
+<img id="boy" class="figure" src="https://i.ibb.co/VpZJ7pH/male-shadow.png">
+<img id="girl" class="figure" src="https://i.ibb.co/F5KJ3cX/female-shadow.png">
 
-<button onclick="toggleMusic()" 
-class="fixed top-5 right-5 bg-red-600 px-4 py-2 rounded-full z-50">
-🎶
-</button>
-
-<section class="min-h-screen flex flex-col justify-center items-center text-center px-6 fade-in">
-<h1 class="font-cursive text-6xl text-red-500">Ramya ❤️</h1>
-<p class="italic mt-4 text-gray-300">From 14 September 2021 to Forever</p>
+<section>
+<h1 class="gold">Ramya</h1>
+<h2 id="typing"></h2>
 </section>
 
-<section class="py-20 px-6">
-<div class="max-w-3xl mx-auto glass p-10 rounded-2xl text-center">
-<h2 class="font-title text-4xl text-yellow-400 mb-6">Our Love Story</h2>
+<section>
+<h2>Our Beginning — 14 Sept 2021</h2>
+</section>
 
-<div class="timeline-line pl-6 text-left space-y-8">
+<section>
+<h2>Vadapalani Murugan Blessing</h2>
+</section>
 
-<div>
-<h3 class="text-red-400 font-bold">14 September 2021</h3>
-<p>First meet. I came casually… but destiny had already decided something beautiful.</p>
-</div>
-
-<div>
-<h3 class="text-red-400 font-bold">Endless Calls</h3>
-<p>5 minutes turned into 2 hours. Sleep became optional. You became essential.</p>
-</div>
-
-<div>
-<h3 class="text-red-400 font-bold">29 August 2025</h3>
-<p>Our wedding day. Not just marriage — two souls becoming one forever.</p>
-</div>
-
-</div>
+<section>
+<div class="poem" id="poem">
+பிரியாணி தேடி வந்த பயணத்தில்,<br>
+பெரியதொரு தேவதையை கண்டேனே!<br>
+"டாட்டூ" கேட்ட உன் ஒற்றை வினாவில்,<br>
+என் மொத்த இதயத்தையும் தந்தேனே!<br><br>
+இன்ஸ்டாகிராம் இரவுகளும், கல்லூரி இடைவெளியும்,<br>
+நம் காதலை மெருகேற்றிய ரகசியங்கள்!<br>
+தடைகள் பல வந்த போதும் தளராமல்,<br>
+நாம் இணைந்தோம் "இன்பினிட்டி" பந்தத்தில்!<br><br>
+வடாபழனி முருகன் சாட்சியாய் கைகோர்த்து,<br>
+மலேசியா முதல் பாலி வரை தடம் பதித்து,<br>
+சண்டைகள், கொஞ்சல்கள், செல்லக் கோபங்களுடன்,<br>
+நம் காதல் பயணம் தொடருமே... காலங்கள் கடந்தும்!
 </div>
 </section>
 
-<section class="py-20 text-center">
-<h2 class="font-cursive text-5xl text-yellow-400 mb-6">Inside Jokes</h2>
-<p>🌶️ “Your 2PM mood swings need GST registration.”</p>
-<p>📱 “Network issue? Or are you ignoring me?”</p>
-<p>🍛 “I came for biriyani. I stayed for you.”</p>
+<section>
+<h2>Wedding — 29 Aug 2025</h2>
 </section>
 
-<section class="py-20 text-center">
-<h2 class="font-title text-4xl text-yellow-400 mb-6">Countdown to Our Anniversary</h2>
-<div id="countdown" class="text-2xl"></div>
-</section>
-
-<section class="py-20 text-center">
-<button onclick="showLetter()" class="bg-red-600 px-6 py-3 rounded-full">
-💌 Open Love Letter
-</button>
-
-<div id="letter" class="proposal glass p-8 rounded-2xl mt-6 max-w-2xl mx-auto">
-<h2 class="font-cursive text-4xl text-yellow-400 mb-4">My Ramya</h2>
-<p>
-From the moment I met you, something inside me changed.  
-You are not just my wife.  
-You are my calm, my madness, my peace, my forever.  
-
-I promise to love you louder on the difficult days  
-and softer on the quiet ones.  
-
-With you, infinity doesn’t feel long enough.  
-I love you beyond words.
-</p>
-</div>
-</section>
-
-<section class="py-20 text-center">
-<h2 class="font-title text-4xl text-yellow-400 mb-6">Vadapalani Murugan Temple</h2>
-<iframe 
-src="https://www.google.com/maps?q=Vadapalani+Murugan+Temple&output=embed"
-width="100%" height="300" style="border:0;" allowfullscreen></iframe>
-</section>
-
-<section class="py-20 text-center">
-<button onclick="showProposal()" class="bg-yellow-500 text-black px-6 py-3 rounded-full">
-Click Here If You Love Me ❤️
-</button>
-
-<div id="proposalText" class="proposal mt-6 text-4xl font-cursive text-red-500">
-Will You Stay With Me Forever?
-</div>
+<section>
+<h2>Countdown to 15 Aug 2026</h2>
+<div class="countdown" id="countdown"></div>
+<div class="signature" id="signature">Ramya ❤️ Yuvaraj</div>
 </section>
 
 <script>
-/* Music */
-function toggleMusic(){
-const music=document.getElementById("bgMusic");
-music.paused?music.play():music.pause();
+
+/* Temple ambience */
+window.onload=function(){
+bells.play();
+music.play();
+typeText();
 }
 
+/* Typing */
+function typeText(){
+let text="I Love You ❤️";
+let i=0;
+function type(){
+if(i<text.length){
+document.getElementById("typing").innerHTML+=text.charAt(i);
+i++;
+setTimeout(type,100);
+}}
+type();
+}
+
+/* Scroll animation logic */
+let boy=document.getElementById("boy");
+let girl=document.getElementById("girl");
+let poem=document.getElementById("poem");
+let signature=document.getElementById("signature");
+
+window.addEventListener("scroll",()=>{
+let scroll=window.scrollY;
+
+boy.style.left=(scroll*0.3-200)+"px";
+
+if(scroll>500){
+girl.style.opacity=1;
+girl.style.right=(50-scroll*0.1)+"px";
+}
+
+if(scroll>900){
+poem.classList.add("show");
+}
+
+if(scroll>1500){
+launchFireworks();
+signature.style.opacity=1;
+}
+});
+
+/* Countdown */
+let target=new Date("Aug 15, 2026 00:00:00").getTime();
+setInterval(()=>{
+let now=new Date().getTime();
+let diff=target-now;
+let d=Math.floor(diff/(1000*60*60*24));
+let h=Math.floor((diff%(1000*60*60*24))/(1000*60*60));
+let m=Math.floor((diff%(1000*60*60))/(1000*60));
+let s=Math.floor((diff%(1000*60))/1000);
+document.getElementById("countdown").innerHTML=d+"d "+h+"h "+m+"m "+s+"s";
+},1000);
+
 /* Stars */
-const canvas=document.getElementById("stars");
-const ctx=canvas.getContext("2d");
-canvas.width=window.innerWidth;
-canvas.height=window.innerHeight;
+let starCanvas=document.getElementById("stars");
+let ctx=starCanvas.getContext("2d");
+starCanvas.width=window.innerWidth;
+starCanvas.height=window.innerHeight;
 let stars=[];
 for(let i=0;i<200;i++){
-stars.push({x:Math.random()*canvas.width,
-y:Math.random()*canvas.height,
-r:Math.random()*2});
+stars.push({x:Math.random()*starCanvas.width,y:Math.random()*starCanvas.height,r:Math.random()*2});
 }
 function drawStars(){
-ctx.clearRect(0,0,canvas.width,canvas.height);
+ctx.clearRect(0,0,starCanvas.width,starCanvas.height);
 ctx.fillStyle="white";
 stars.forEach(s=>{
 ctx.beginPath();
-ctx.arc(s.x,s.y,s.r,0,Math.PI*2);
+ctx.arc(s.x,s.y,s.r,0,2*Math.PI);
 ctx.fill();
 });
 requestAnimationFrame(drawStars);
 }
 drawStars();
 
-/* Countdown */
-const target=new Date("August 29, 2026 07:00:00").getTime();
-setInterval(()=>{
-const now=new Date().getTime();
-const diff=target-now;
-const days=Math.floor(diff/(1000*60*60*24));
-document.getElementById("countdown").innerHTML=
-days+" Days Remaining ❤️";
-if(diff<=0){
-document.body.style.background="black";
-alert("Happy Anniversary My Love 🎆");
-}
-},1000);
+/* Fireworks engine */
+let fw=document.getElementById("fireworks");
+let fctx=fw.getContext("2d");
+fw.width=window.innerWidth;
+fw.height=window.innerHeight;
 
-/* Letter */
-function showLetter(){
-document.getElementById("letter").style.display="block";
+function launchFireworks(){
+for(let i=0;i<100;i++){
+let x=Math.random()*fw.width;
+let y=Math.random()*fw.height/2;
+fctx.beginPath();
+fctx.arc(x,y,2,0,2*Math.PI);
+fctx.fillStyle="hsl("+Math.random()*360+",100%,50%)";
+fctx.fill();
 }
-
-/* Proposal */
-function showProposal(){
-document.getElementById("proposalText").style.display="block";
 }
-
-/* Hearts */
-setInterval(()=>{
-const heart=document.createElement("div");
-heart.innerHTML="❤️";
-heart.className="heart";
-heart.style.left=Math.random()*100+"vw";
-heart.style.bottom="-10px";
-heart.style.fontSize=Math.random()*20+15+"px";
-heart.style.animationDuration="4s";
-document.body.appendChild(heart);
-setTimeout(()=>heart.remove(),4000);
-},300);
 </script>
 
 </body>
