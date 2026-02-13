@@ -1,254 +1,221 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Ramya ❤️ Yuvaraj</title>
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
+
+<!-- GSAP -->
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.2/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.2/dist/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.2/dist/MotionPathPlugin.min.js"></script>
 
 <style>
-*{margin:0;padding:0;box-sizing:border-box}
-body{
-font-family:'Poppins',sans-serif;
-background:#000;
-color:white;
-overflow-x:hidden;
-scroll-behavior:smooth;
+body {
+  margin:0;
+  font-family:'Poppins', sans-serif;
+  background: radial-gradient(circle at center, #0b1a3a, #050d1f);
+  color:white;
+  overflow-x:hidden;
+  scroll-behavior:smooth;
 }
 
-/* Temple cinematic background */
-body::before{
-content:"";
-position:fixed;
-width:100%;
-height:100%;
-background:url("https://images.unsplash.com/photo-1625660009535-76a5a9d5c1a7?auto=format&fit=crop&w=1600&q=80") center/cover no-repeat;
-filter:brightness(0.3) blur(6px);
-z-index:-3;
+/* Intro */
+.intro {
+  height:100vh;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
 }
 
-canvas{
-position:fixed;
-top:0;
-left:0;
-pointer-events:none;
+.title {
+  font-size:3rem;
+  opacity:0;
 }
 
-section{
-height:100vh;
-display:flex;
-flex-direction:column;
-justify-content:center;
-align-items:center;
-text-align:center;
-padding:20px;
+.subtitle {
+  font-size:1.2rem;
+  opacity:0;
+  margin-top:20px;
 }
 
-h1{font-family:'Cinzel',serif;font-size:60px;}
-
-.gold{
-background:linear-gradient(90deg,#ffd700,#fff,#ffd700);
--webkit-background-clip:text;
--webkit-text-fill-color:transparent;
-animation:sparkle 3s infinite linear;
-}
-@keyframes sparkle{
-0%{filter:brightness(1);}
-50%{filter:brightness(2);}
-100%{filter:brightness(1);}
+/* Timeline */
+.timeline {
+  padding:100px 20px;
+  text-align:center;
 }
 
-/* Shadow figures */
-.figure{
-position:fixed;
-bottom:0;
-height:300px;
-filter:brightness(0) invert(1) opacity(0.8);
-transition:all 0.3s linear;
+.moment {
+  margin:150px 0;
+  font-size:1.6rem;
+  opacity:0;
+  transform:translateY(60px);
 }
 
-#boy{
-left:-200px;
+/* Temple Aura */
+.temple-section {
+  position:relative;
+  height:400px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
 }
 
-#girl{
-right:50px;
-opacity:0;
+.temple-aura {
+  position:absolute;
+  width:300px;
+  height:300px;
+  background: radial-gradient(circle, rgba(255,215,0,0.6), transparent 70%);
+  border-radius:50%;
+  animation:aura 4s infinite ease-in-out;
+  z-index:-1;
 }
 
-/* Tamil engraved */
-.poem{
-max-width:800px;
-font-size:20px;
-line-height:2;
-opacity:0;
-transform:translateY(40px);
-transition:all 1.5s ease;
+@keyframes aura {
+  0%,100% {transform: scale(1); opacity:0.6;}
+  50% {transform: scale(1.2); opacity:1;}
 }
 
-.show{opacity:1;transform:translateY(0)}
-
-.signature{
-font-size:28px;
-margin-top:20px;
-opacity:0;
-transition:2s;
+/* Flight */
+#flightSVG {
+  width:100%;
+  height:200px;
+  margin-top:50px;
 }
 
-.countdown{
-font-size:32px;
-margin-top:20px;
+/* Runner */
+.runner-container {
+  position:fixed;
+  bottom:30px;
+  left:0;
+  width:100%;
+  pointer-events:none;
+}
+
+.runner {
+  width:80px;
+  position:absolute;
+  left:0;
+}
+
+/* Couple */
+.couple {
+  height:300px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  font-size:2rem;
+  background: radial-gradient(circle, gold 10%, transparent 60%);
+  opacity:0;
+}
+
+/* Countdown */
+.countdown {
+  text-align:center;
+  padding:100px;
+  font-size:2rem;
 }
 </style>
 </head>
+
 <body>
 
-<audio id="bells" src="https://assets.mixkit.co/sfx/preview/mixkit-temple-bell-588.mp3"></audio>
-<audio id="music" loop src="https://assets.mixkit.co/music/preview/mixkit-love-romantic-ambient-120.mp3"></audio>
-
-<canvas id="stars"></canvas>
-<canvas id="fireworks"></canvas>
-
-<img id="boy" class="figure" src="https://i.ibb.co/VpZJ7pH/male-shadow.png">
-<img id="girl" class="figure" src="https://i.ibb.co/F5KJ3cX/female-shadow.png">
-
-<section>
-<h1 class="gold">Ramya</h1>
-<h2 id="typing"></h2>
+<section class="intro">
+  <h1 class="title">Ramya ❤️ Yuvaraj</h1>
+  <div class="subtitle">A Cinematic Love Journey</div>
 </section>
 
-<section>
-<h2>Our Beginning — 14 Sept 2021</h2>
+<section class="timeline">
+  <div class="moment">✨ First Conversation</div>
+  <div class="moment">🌸 First Smile</div>
+  <div class="moment">💖 The Proposal</div>
 </section>
 
-<section>
-<h2>Vadapalani Murugan Blessing</h2>
+<section class="temple-section">
+  <div class="temple-aura"></div>
+  <h2>🛕 Divine Blessings</h2>
 </section>
 
-<section>
-<div class="poem" id="poem">
-பிரியாணி தேடி வந்த பயணத்தில்,<br>
-பெரியதொரு தேவதையை கண்டேனே!<br>
-"டாட்டூ" கேட்ட உன் ஒற்றை வினாவில்,<br>
-என் மொத்த இதயத்தையும் தந்தேனே!<br><br>
-இன்ஸ்டாகிராம் இரவுகளும், கல்லூரி இடைவெளியும்,<br>
-நம் காதலை மெருகேற்றிய ரகசியங்கள்!<br>
-தடைகள் பல வந்த போதும் தளராமல்,<br>
-நாம் இணைந்தோம் "இன்பினிட்டி" பந்தத்தில்!<br><br>
-வடாபழனி முருகன் சாட்சியாய் கைகோர்த்து,<br>
-மலேசியா முதல் பாலி வரை தடம் பதித்து,<br>
-சண்டைகள், கொஞ்சல்கள், செல்லக் கோபங்களுடன்,<br>
-நம் காதல் பயணம் தொடருமே... காலங்கள் கடந்தும்!
+<svg id="flightSVG" viewBox="0 0 1000 200">
+  <path id="flightPath" d="M0,100 C300,0 700,200 1000,100" stroke="transparent" fill="none"/>
+  <circle id="heartFly" r="10" fill="red"/>
+</svg>
+
+<div class="runner-container">
+  <img class="runner" src="https://cdn-icons-png.flaticon.com/512/1995/1995474.png"/>
 </div>
+
+<section class="couple">
+  💍 Forever Begins Here 💍
 </section>
 
-<section>
-<h2>Wedding — 29 Aug 2025</h2>
-</section>
-
-<section>
-<h2>Countdown to 15 Aug 2026</h2>
-<div class="countdown" id="countdown"></div>
-<div class="signature" id="signature">Ramya ❤️ Yuvaraj</div>
+<section class="countdown" id="countdown">
+  Countdown to Wedding...
 </section>
 
 <script>
+gsap.registerPlugin(ScrollTrigger, MotionPathPlugin);
 
-/* Temple ambience */
-window.onload=function(){
-bells.play();
-music.play();
-typeText();
-}
+/* Intro Animation */
+gsap.to(".title", {opacity:1, y:-20, duration:2});
+gsap.to(".subtitle", {opacity:1, delay:1, duration:2});
 
-/* Typing */
-function typeText(){
-let text="I Love You ❤️";
-let i=0;
-function type(){
-if(i<text.length){
-document.getElementById("typing").innerHTML+=text.charAt(i);
-i++;
-setTimeout(type,100);
-}}
-type();
-}
+/* Timeline Scroll Reveal */
+gsap.utils.toArray(".moment").forEach(moment=>{
+  gsap.to(moment,{
+    scrollTrigger:{
+      trigger:moment,
+      start:"top 80%"
+    },
+    opacity:1,
+    y:0,
+    duration:1.5
+  });
+});
 
-/* Scroll animation logic */
-let boy=document.getElementById("boy");
-let girl=document.getElementById("girl");
-let poem=document.getElementById("poem");
-let signature=document.getElementById("signature");
+/* Flying Heart */
+gsap.to("#heartFly",{
+  duration:5,
+  repeat:-1,
+  ease:"none",
+  motionPath:{
+    path:"#flightPath",
+    align:"#flightPath",
+    autoRotate:true
+  }
+});
 
-window.addEventListener("scroll",()=>{
-let scroll=window.scrollY;
+/* Runner Animation */
+gsap.to(".runner",{
+  x:window.innerWidth,
+  duration:8,
+  repeat:-1,
+  ease:"linear"
+});
 
-boy.style.left=(scroll*0.3-200)+"px";
-
-if(scroll>500){
-girl.style.opacity=1;
-girl.style.right=(50-scroll*0.1)+"px";
-}
-
-if(scroll>900){
-poem.classList.add("show");
-}
-
-if(scroll>1500){
-launchFireworks();
-signature.style.opacity=1;
-}
+/* Couple Reveal */
+gsap.to(".couple",{
+  scrollTrigger:{
+    trigger:".couple",
+    start:"top 80%"
+  },
+  opacity:1,
+  duration:2
 });
 
 /* Countdown */
-let target=new Date("Aug 15, 2026 00:00:00").getTime();
+const targetDate = new Date("2026-12-31").getTime();
 setInterval(()=>{
-let now=new Date().getTime();
-let diff=target-now;
-let d=Math.floor(diff/(1000*60*60*24));
-let h=Math.floor((diff%(1000*60*60*24))/(1000*60*60));
-let m=Math.floor((diff%(1000*60*60))/(1000*60));
-let s=Math.floor((diff%(1000*60))/1000);
-document.getElementById("countdown").innerHTML=d+"d "+h+"h "+m+"m "+s+"s";
+  const now = new Date().getTime();
+  const distance = targetDate - now;
+  const days = Math.floor(distance/(1000*60*60*24));
+  document.getElementById("countdown").innerHTML =
+    "Wedding in " + days + " days ❤️";
 },1000);
-
-/* Stars */
-let starCanvas=document.getElementById("stars");
-let ctx=starCanvas.getContext("2d");
-starCanvas.width=window.innerWidth;
-starCanvas.height=window.innerHeight;
-let stars=[];
-for(let i=0;i<200;i++){
-stars.push({x:Math.random()*starCanvas.width,y:Math.random()*starCanvas.height,r:Math.random()*2});
-}
-function drawStars(){
-ctx.clearRect(0,0,starCanvas.width,starCanvas.height);
-ctx.fillStyle="white";
-stars.forEach(s=>{
-ctx.beginPath();
-ctx.arc(s.x,s.y,s.r,0,2*Math.PI);
-ctx.fill();
-});
-requestAnimationFrame(drawStars);
-}
-drawStars();
-
-/* Fireworks engine */
-let fw=document.getElementById("fireworks");
-let fctx=fw.getContext("2d");
-fw.width=window.innerWidth;
-fw.height=window.innerHeight;
-
-function launchFireworks(){
-for(let i=0;i<100;i++){
-let x=Math.random()*fw.width;
-let y=Math.random()*fw.height/2;
-fctx.beginPath();
-fctx.arc(x,y,2,0,2*Math.PI);
-fctx.fillStyle="hsl("+Math.random()*360+",100%,50%)";
-fctx.fill();
-}
-}
 </script>
 
 </body>
